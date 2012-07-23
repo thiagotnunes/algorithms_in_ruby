@@ -1,0 +1,9 @@
+Elements:
+
+  Number of elements is given by the following equasion
+  n! / k! * (n-k)!
+
+  For 4 elements, combined 3 by 3
+  4 * 3 * 2 * 1 / 3 * 2 * 1 * (4-3)!
+  4 * 3 * 2 * 1 / 3 * 2 * 1 * 1
+  4
