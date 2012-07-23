@@ -1,17 +1,13 @@
 #!/bin/ruby
 
-$set = [1,2,3,4]
-
-def permute(i, permutations)
-  if (i == $set.length)
+def permute(set, permutations = [])
+  if (permutations.length == set.length)
     p permutations
-    return
-  end
-
-  $set.each do |e|
-    permutations[i] = e
-    permute(i+1, permutations)
+  else
+    set.each do |e|
+      permute(set, permutations + [e])
+    end
   end
 end
 
-permute(0, [])
+permute([1,2,3,4])
