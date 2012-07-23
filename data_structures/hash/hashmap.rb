@@ -6,13 +6,13 @@ class HashMap
   end
 
   def put(key, value)
-    hash = hash_the(key)
+    hash = key.monkey_hash
     @lists[hash] = [] if @lists[hash].nil?
     @lists[hash] << Bucket.new(key, value)
   end
 
   def get(key)
-    hash = hash_the(key)
+    hash = key.monkey_hash
     value = nil
     @lists[hash].each do |bucket|
       if bucket.key == key 
@@ -20,12 +20,6 @@ class HashMap
       end
     end
     value
-  end
-
-  private
-
-  def hash_the(key)
-    1               
   end
 end
 
@@ -35,6 +29,18 @@ class Bucket
   def initialize(key, value)
     @key = key
     @value = value
+  end
+end
+
+class String
+  def monkey_hash
+    self.length
+  end
+end
+
+class Fixnum
+  def monkey_hash
+    self
   end
 end
 
