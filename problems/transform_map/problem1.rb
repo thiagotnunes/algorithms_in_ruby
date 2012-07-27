@@ -1,3 +1,8 @@
+# The idea here is to transform the given data structure into another as follows:
+# log = [ {time: 201201, a:1}, {time:201201, b:2}, {time:201202, c:3}, {time:201203, d:4}]
+# into
+# log = [ {time:201201, a:1, b:2}, {time:201202, c:3}, {time:201203, d:4} ]
+
 log = [
   {time: 201201, x: 2},
   {time: 201201, y: 7},
