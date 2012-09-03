@@ -38,4 +38,24 @@ describe "Heap" do
       @heap.parent_for(6).should == 2
     end
   end
+
+  context "Bubblying up" do
+    it "bubbles up an element to the beggining when it is the largest" do
+      @heap.bubble_up(3, [4,2,1,7]).should == [7,4,1,2]
+    end
+
+    it "bubbles up an element to the middle when it is larger than all its parents" do
+      @heap.bubble_up(3, [7,2,1,4]).should == [7,4,1,2]
+    end
+
+    it "does nothing when an element is smaller than its immediate parent" do
+      @heap.bubble_up(3, [7,4,1,2]).should  == [7,4,1,2]
+    end
+  end
+
+  context "Max Heapifying" do
+    it "heapifies an ordered array"
+
+    it "heapifies an unordered array"
+  end
 end
