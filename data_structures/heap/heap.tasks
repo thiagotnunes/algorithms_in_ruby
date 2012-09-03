@@ -1,0 +1,3 @@
+Heap is a weak kind of binary tree where it is guaranteed that the parent of a node is larger (max-heap) or smaller (min-heap) than it's children.
+
+It is represented within an array in order to save space (no pointers needed), although it makes it less flexible than a pointer based data structure tree.
