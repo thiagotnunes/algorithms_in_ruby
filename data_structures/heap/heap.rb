@@ -1,25 +1,18 @@
 class Heap
 
-  attr_reader :heap
+  attr_accessor :heap
 
-  def self.max_heap
-    new do |current, parent|
-      current > parent
-    end
+  def initialize
+    @heap = []
   end
 
   def insert(element)
     @heap << element
-    bubble_up(@heap.size - 1)
+    bubble_up(@heap.size - 1, @heap)
     self
   end
 
   private
-
-  def initialize(&comparator)
-    @heap = []
-    @comparator = comparator
-  end
 
   def parent_for(current_position)
     base = (current_position - 1)
@@ -27,16 +20,25 @@ class Heap
     base / 2
   end
 
-  def bubble_up(position)
+  def bubble_up(position, array)
     parent = parent_for(position) 
 
-    if (@comparator.call(@heap[position], @heap[parent]))
-      swap(@heap, position, parent)
-      bubble_up(parent)
+    if (should_bubble_up(array[parent], array[position]))
+      swap(position, parent)
+      bubble_up(parent, array)
     end
   end
 
-  def swap(array, position, parent)
-    array[position], array[parent] = array[parent], array[position]
+  def swap(position, parent)
+    @heap[position], @heap[parent] = @heap[parent], @heap[position]
   end
 end
+
+class MinHeap < Heap
+  private
+
+  def should_bubble_up(parent, current)
+    parent > current
+  end
+end
+

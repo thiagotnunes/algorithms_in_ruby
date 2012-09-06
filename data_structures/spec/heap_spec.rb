@@ -1,21 +1,17 @@
 require_relative '../heap/heap'
 
-describe "Heap" do
-  context "Max" do
-    before(:each) do
-      @heap = Heap.max_heap
-    end
+describe "Min Heap" do
+  before(:each) do
+    @min = MinHeap.new
+  end
 
-    context "Inserting" do
-      it "should insert a new element in the first position when heap is empry" do
-        @heap.insert(5)
-        @heap.heap.should == [5]
-      end
+  it "should insert a single element" do
+    @min.insert(10)
+    @min.heap.should == [10]
+  end
 
-      it "should keep the heap structure when inserting new elements" do
-        @heap.insert(5).insert(6).insert(1).insert(7).insert(4)
-        @heap.heap.should == [7,6,1,5,4]
-      end
-    end
+  it "should keep the heap integrity after each insert" do
+    @min.insert(10).insert(5).insert(2).insert(7).insert(9).insert(3)
+    @min.heap.should == [2,7,3,10,9,5]
   end
 end
