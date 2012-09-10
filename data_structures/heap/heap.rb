@@ -8,7 +8,7 @@ class Heap
 
   def insert(element)
     @heap << element
-    bubble_up(@heap.size - 1, @heap)
+    bubble_up(@heap.size - 1)
     self
   end
 
@@ -20,12 +20,31 @@ class Heap
     base / 2
   end
 
-  def bubble_up(position, array)
+  def left_child_for(position)
+    position * 2 + 1
+  end
+
+  def right_child_for(position)
+    position * 2 + 2
+  end
+
+  def bubble_up(position)
     parent = parent_for(position) 
 
-    if (should_bubble_up(array[parent], array[position]))
+    if (should_bubble_up(@heap[parent], @heap[position]))
       swap(position, parent)
-      bubble_up(parent, array)
+      bubble_up(parent)
+    end
+  end
+
+  def bubble_down(position)
+    dominant = dominant_from(position, 
+                             left_child_for(position), 
+                             right_child_for(position))
+
+    if (should_bubble_down(@heap[dominant], @heap[position]))
+      swap(position, dominant)
+      bubble_down(dominant)
     end
   end
 
@@ -38,24 +57,21 @@ class MinHeap < Heap
   def extract_min
     swap(0, @heap.size - 1)
     min = @heap.pop
-    bubble_down(0, @heap)
+    bubble_down(0)
     min
   end
 
   private
 
-  def bubble_down(position, array)
-    left_child = position * 2 + 1
-    right_child = position * 2 + 2
-
-    min = position
-    min = left_child if !array[left_child].nil? && array[min] > array[left_child]
-    min = right_child if !array[right_child].nil? && array[min] > array[right_child]
-
-    if (should_bubble_down(array[min], array[position]))
-      swap(position, min)
-      bubble_down(min, array)
+  def dominant_from(current, left, right)
+    min = current
+    if !@heap[left].nil? && @heap[min] > @heap[left]
+      min = left 
     end
+    if !@heap[right].nil? && @heap[min] > @heap[right]
+      min = right
+    end
+    min
   end
 
   def should_bubble_up(parent, current)
