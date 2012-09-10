@@ -14,4 +14,10 @@ describe "Min Heap" do
     @min.insert(10).insert(5).insert(2).insert(7).insert(9).insert(3)
     @min.heap.should == [2,7,3,10,9,5]
   end
+
+  it "should extract the minimum and mantain heap integrity" do
+    @min.insert(10).insert(5).insert(2).insert(7).insert(9).insert(3)
+    @min.extract_min.should == 2
+    @min.heap.should == [3,7,5,10,9]
+  end
 end
