@@ -8,15 +8,8 @@ class MaxHeap < Heap
 
   private
 
-  def dominant_from(current, left, right)
-    max = current
-    if !@heap[left].nil? && @heap[max] < @heap[left]
-      max = left 
-    end
-    if !@heap[right].nil? && @heap[max] < @heap[right]
-      max = right
-    end
-    max
+  def dominates(first, second)
+    !first.nil? && first > second
   end
 
   def should_bubble_up(parent, current)

@@ -8,15 +8,8 @@ class MinHeap < Heap
 
   private
 
-  def dominant_from(current, left, right)
-    min = current
-    if !@heap[left].nil? && @heap[min] > @heap[left]
-      min = left 
-    end
-    if !@heap[right].nil? && @heap[min] > @heap[right]
-      min = right
-    end
-    min
+  def dominates(first, second)
+    !first.nil? && first < second
   end
 
   def should_bubble_up(parent, current)

@@ -48,6 +48,17 @@ class Heap
     end
   end
 
+  def dominant_from(current, left, right)
+    dominant = current
+    if dominates(@heap[left], @heap[dominant])
+      dominant = left 
+    end
+    if dominates(@heap[right], @heap[dominant])
+      dominant = right
+    end
+    dominant
+  end
+
   def swap(first, second)
     @heap[first], @heap[second] = @heap[second], @heap[first]
   end
