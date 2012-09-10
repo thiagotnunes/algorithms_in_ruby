@@ -12,6 +12,13 @@ class Heap
     self
   end
 
+  def extract_dominant
+    swap(0, @heap.size - 1)
+    dominant = @heap.pop
+    bubble_down(0)
+    dominant
+  end
+
   private
 
   def parent_for(current_position)

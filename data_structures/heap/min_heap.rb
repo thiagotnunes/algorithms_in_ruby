@@ -1,10 +1,5 @@
 class MinHeap < Heap
-  def extract_min
-    swap(0, @heap.size - 1)
-    min = @heap.pop
-    bubble_down(0)
-    min
-  end
+  alias :extract_min :extract_dominant
 
   private
 
