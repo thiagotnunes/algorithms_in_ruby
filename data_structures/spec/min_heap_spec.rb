@@ -1,4 +1,6 @@
-require_relative '../heap/heap'
+require 'spec_helper'
+require 'heap/heap'
+require 'heap/min_heap'
 
 describe "Min Heap" do
   before(:each) do
